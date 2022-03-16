@@ -50,21 +50,13 @@ void	ft_valid_file(char *str)
 char	**ft_get_file(int fd, const char *str)
 {
 	char	**file;
-	int		y;
 	char	*line;
 	int		i;
 	int		ret;
+	int		y;
 
 	line = NULL;
-	y = 0;
-	while (get_next_line(fd, &line))
-	{
-		if (*line)
-			y++;
-		free(line);
-	}
-	y++;
-	free(line);
+	y = count_line(fd, line);
 	close(fd);
 	fd = open(str, O_RDONLY);
 	file = malloc(sizeof(char *) * (y + 1));
@@ -74,10 +66,7 @@ char	**ft_get_file(int fd, const char *str)
 	{
 		ret = get_next_line(fd, &line);
 		if (*line)
-		{
-			file[i] = ft_strdup(line);
-			i++;
-		}
+			file[i++] = ft_strdup(line);
 		free(line);
 	}
 	file[i] = NULL;

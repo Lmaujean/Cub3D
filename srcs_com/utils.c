@@ -12,31 +12,6 @@
 
 #include "../includes/cub.h"
 
-int	ft_error(int c)
-{
-	if (c == 1)
-		printf("Error\nArguments\n");
-	if (c == 2)
-		printf("Error\nTry Open Directory\n");
-	if (c == 3)
-		printf("Error\nFile Not Found\n");
-	if (c == 4)
-		printf("Error\nFile Not .cub\n");
-	if (c == 5)
-		printf("Error\nWrong Parametre\n");
-	if (c == 6)
-		printf("Error\nBad Caractere On Map\n");
-	if (c == 7)
-		printf("Error\nPlayer Not Valid\n");
-	if (c == 8)
-		printf("Error\nMap Not Closed\n");
-	if (c == 9)
-		printf("Error\nFormat RGB Not valid\n");
-	if (c == 10)
-		printf("Error\nPath Not Valid\n");
-	return (c);
-}
-
 int	ft_check_ext(const char *file, const char *ext)
 {
 	int	len_file;
@@ -57,7 +32,7 @@ int	ft_check_ext(const char *file, const char *ext)
 	return (1);
 }
 
-static void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	char	*str;
 	size_t	i;

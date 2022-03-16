@@ -59,3 +59,46 @@ int	ft_atoi(const char *nptr)
 	}
 	return (res * neg);
 }
+
+int	count_line(int fd, char *str)
+{
+	int	y;
+
+	y = 0;
+	while (get_next_line(fd, &str))
+	{
+		if (*str)
+			y++;
+		free(str);
+	}
+	free(str);
+	y++;
+	return (y);
+}
+
+void	ft_save_text(t_game *game, char **file)
+{
+	int		i;
+	int		j;
+	int		l;
+	char	*trim;
+
+	i = -1;
+	j = -1;
+		l = 0;
+	while (file[++i])
+	{
+		if (l > 5)
+			break ;
+		trim = ft_strtrim(file[i], " \t");
+		if (ft_check_param_file(trim) == 1)
+				game->texture[++j] = ft_strdup(trim);
+		else
+		{
+			ft_error(5);
+			exit(EXIT_FAILURE);
+		}
+		l++;
+		free(trim);
+	}
+}

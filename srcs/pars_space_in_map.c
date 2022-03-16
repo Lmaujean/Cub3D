@@ -47,7 +47,7 @@ void	ft_check_before_line(t_game *game)
 		{
 			if ((game->map[i][j] == '0' || game->map[i][j] == 'N' || \
 				game->map[i][j] == 'S' || game->map[i][j] == 'W' || \
-				game->map[i][j] == '0') && game->map[i - 1][j])
+				game->map[i][j] == 'E') && game->map[i - 1][j])
 			{
 				if (game->map[i - 1][j] != '0' && game->map[i - 1][j] != '1' && \
 					game->map[i - 1][j] != 'S' && game->map[i - 1][j] != 'N' && \
@@ -76,7 +76,7 @@ void	ft_check_next_line(t_game *game)
 				break ;
 			if ((game->map[i][j] == '0' || game->map[i][j] == 'N' || \
 				game->map[i][j] == 'S' || game->map[i][j] == 'W' || \
-				game->map[i][j] == '0') && game->map[i + 1][j])
+				game->map[i][j] == 'E') && game->map[i + 1][j])
 			{
 				if (game->map[i + 1][j] != '0' && game->map[i + 1][j] != '1' && \
 					game->map[i + 1][j] != 'S' && game->map[i + 1][j] != 'N' && \
@@ -95,7 +95,7 @@ void	ft_check_all_file(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	while (game->map[++i])
 	{
 		j = -1;
@@ -103,7 +103,7 @@ void	ft_check_all_file(t_game *game)
 		{
 			if ((game->map[i][j] == '0' || game->map[i][j] == 'N' || \
 				game->map[i][j] == 'S' || game->map[i][j] == 'W' || \
-				game->map[i][j] == '0') && game->map[i][j + 1])
+				game->map[i][j] == 'E') && game->map[i][j + 1])
 			{
 				if (game->map[i][j + 1] != '0' && game->map[i][j + 1] != '1' && \
 					game->map[i][j + 1] != 'S' && game->map[i][j + 1] != 'N' && \
@@ -116,9 +116,6 @@ void	ft_check_all_file(t_game *game)
 		}
 	}
 	ft_check_before_line(game);
-	ft_check_next_line(game);
-	ft_check_last_line(game);
-	ft_check_first_carac(game);
 }
 
 void	ft_check_first_line(t_game *game)
@@ -139,5 +136,8 @@ void	ft_check_first_line(t_game *game)
 			}
 		}
 	}
+	ft_check_next_line(game);
+	ft_check_last_line(game);
+	ft_check_first_carac(game);
 	ft_check_all_file(game);
 }

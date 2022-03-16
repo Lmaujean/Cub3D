@@ -45,6 +45,7 @@ SRCS_COM		= 	utils.c\
 					utils2.c\
 					utils3.c\
 					utils4.c\
+					utils5.c\
 					GNL_utils.c\
 					GNL.c\
 					

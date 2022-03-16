@@ -135,5 +135,8 @@ int		ft_count_char(char *str, char c);
 void	ft_free_texture(t_texture *text);
 int		ft_strisdigit(char *str);
 int		ft_atoi(const char *nptr);
+void	*ft_calloc(size_t count, size_t size);
+int		count_line(int fd, char *str);
+void	ft_save_text(t_game *game, char **file);
 
 #endif

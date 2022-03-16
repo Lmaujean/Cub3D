@@ -74,6 +74,11 @@ int	ft_check(char **file, t_game *game)
 		add_in_check(&check, line);
 		add_in_text(game, line);
 	}
+	if (game->text.f == NULL || game->text.c == NULL)
+	{
+		ft_error(9);
+		exit(EXIT_FAILURE);
+	}
 	ft_check_rgb_floor(game);
 	if (!check_param(check))
 		return (0);
@@ -85,47 +90,24 @@ void	ft_get_param(int fd, char *str, t_game *game)
 	char	**file;
 	int		i;
 	int		j;
-	int		l;
 	char	*trim;
 
 	file = ft_get_file(fd, str);
 	game->map = malloc(sizeof(char *) * (ft_tab_len(file) + 1));
 	if (!ft_check(file, game))
-	{
 		ft_error(5);
-		exit(EXIT_FAILURE);
-	}
 	else
+		ft_save_text(game, file);
+	j = -1;
+	i = -1;
+	while (file[++i])
 	{
-		i = -1;
-		j = -1;
-		l = 0;
-		while (file[++i])
-		{
-			if (l > 5)
-				break ;
-			trim = ft_strtrim(file[i], " \t");
-			if (ft_check_param_file(trim) == 1)
-				game->texture[++j] = ft_strdup(trim);
-			else
-			{
-				ft_error(5);
-				exit(EXIT_FAILURE);
-			}
-			l++;
-			free(trim);
-		}
-		j = -1;
-		i = -1;
-		while (file[++i])
-		{
-			trim = ft_strtrim(file[i], " \t");
-			if (ft_check_param_file(trim) == 0)
-				game->map[++j] = ft_strdup(file[i]);
-			free(trim);
-		}
-		game->map[++j] = ft_strdup(file[i]);
-		game->map[j] = NULL;
-		ft_freedouble(file);
+		trim = ft_strtrim(file[i], " \t");
+		if (ft_check_param_file(trim) == 0)
+			game->map[++j] = ft_strdup(file[i]);
+		free(trim);
 	}
+	game->map[++j] = ft_strdup(file[i]);
+	game->map[j] = NULL;
+	ft_freedouble(file);
 }

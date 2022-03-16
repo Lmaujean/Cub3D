@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 		ft_get_param(fd, av[1], &game);
 		ft_check_carac_map(&game);
 		ft_check_first_line(&game);
-		//print_map(game.texture);
+		system("leaks cub3D");
 	}
 	return (0);
 }

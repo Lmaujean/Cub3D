@@ -12,6 +12,35 @@
 
 #include "../includes/cub.h"
 
+void	add_space(char **line, int space)
+{
+	char	*tmp;
+	char	*tmp_space;
+
+	tmp_space = ft_calloc(sizeof(char *), space + 1);
+	while (space-- > 0)
+		tmp_space[space] = ' ';
+	tmp = ft_strjoin(*line, tmp_space);
+	free(*line);
+	free(tmp_space);
+	*line = tmp;
+}
+
+int	size_line(t_game *game)
+{
+	int	max;
+	int	i;
+
+	max = 0;
+	i = -1;
+	while (game->map[++i])
+	{
+		if (ft_strlen(game->map[i]) > max)
+			max = ft_strlen(game->map[i]);
+	}
+	return (max);
+}
+
 void	ft_check_nbr_carac(t_game *game)
 {
 	int	i;
@@ -39,8 +68,10 @@ void	ft_check_nbr_carac(t_game *game)
 
 void	ft_check_carac_map(t_game *game)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
+	const int	size = size_line(game);
+	int			z;
 
 	i = -1;
 	while (game->map[++i])
@@ -58,5 +89,8 @@ void	ft_check_carac_map(t_game *game)
 			}
 		}
 	}
+	z = -1;
+	while (game->map[++z])
+		add_space(&game->map[z], size - ft_strlen(game->map[z]));
 	ft_check_nbr_carac(game);
 }

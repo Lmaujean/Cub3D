@@ -23,7 +23,7 @@ int	ft_check_ext(const char *file, const char *ext)
 	{
 		if (file[len_file] != ext[len_ext])
 		{
-			ft_error(4);
+			printf("Error\nFile Not .cub\n");
 			exit(EXIT_FAILURE);
 		}
 		len_file--;

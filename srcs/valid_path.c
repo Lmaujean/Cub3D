@@ -19,17 +19,17 @@ void	add_in_text(t_game *game, char *str)
 
 	split = ft_split(str, ' ');
 	line = ft_strtrim(split[0], " \t");
-	if (!ft_strncmp(line, "NO", 3))
+	if (!ft_strncmp(line, "NO", 3) && game->text.no == NULL)
 		game->text.no = ft_strdup(split[1]);
-	if (!ft_strncmp(line, "SO", 3))
+	if (!ft_strncmp(line, "SO", 3) && game->text.so == NULL)
 		game->text.so = ft_strdup(split[1]);
-	if (!ft_strncmp(line, "WE", 3))
+	if (!ft_strncmp(line, "WE", 3) && game->text.we == NULL)
 		game->text.we = ft_strdup(split[1]);
-	if (!ft_strncmp(line, "EA", 3))
+	if (!ft_strncmp(line, "EA", 3) && game->text.ea == NULL)
 		game->text.ea = ft_strdup(split[1]);
-	if (!ft_strncmp(line, "F", 2))
+	if (!ft_strncmp(line, "F", 2) && game->text.f == NULL)
 		game->text.f = ft_strdup(split[1]);
-	if (!ft_strncmp(line, "C", 2))
+	if (!ft_strncmp(line, "C", 2) && game->text.c == NULL)
 		game->text.c = ft_strdup(split[1]);
 	ft_freedouble(split);
 	free(line);
@@ -44,7 +44,7 @@ void	ft_check_rgb_sky(t_game *game)
 	{
 		if (ft_count_char(game->text.c, ',') != 2)
 		{
-			ft_error(9);
+			ft_error(9, game);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -61,14 +61,16 @@ void	ft_check_c(t_game *game)
 	i = -1;
 	if (size != 3)
 	{
-		ft_error(9);
+		ft_error(9, game);
+		ft_freedouble(split);
 		exit(EXIT_FAILURE);
 	}
 	while (split[++i])
 	{
 		if (!ft_strisdigit(split[i]))
 		{
-			ft_error(9);
+			ft_error(9, game);
+			ft_freedouble(split);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -87,14 +89,16 @@ void	ft_check_param_rgb(t_game *game)
 	i = -1;
 	if (size != 3)
 	{
-		ft_error(9);
+		ft_error(9, game);
+		ft_freedouble(split);
 		exit(EXIT_FAILURE);
 	}
 	while (split[++i])
 	{
 		if (!ft_strisdigit(split[i]))
 		{
-			ft_error(9);
+			ft_error(9, game);
+			ft_freedouble(split);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -111,7 +115,7 @@ void	ft_check_rgb_floor(t_game *game)
 	{
 		if (ft_count_char(game->text.f, ',') != 2)
 		{
-			ft_error(9);
+			ft_error(9, game);
 			exit(EXIT_FAILURE);
 		}
 	}

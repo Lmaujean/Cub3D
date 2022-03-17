@@ -27,7 +27,7 @@ void	ft_check_last_line(t_game *game)
 		{
 			if (game->map[i][j] != '1' && game->map[i][j] != ' ')
 			{
-				ft_error(8);
+				ft_error(8, game);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -53,7 +53,7 @@ void	ft_check_before_line(t_game *game)
 					game->map[i - 1][j] != 'S' && game->map[i - 1][j] != 'N' && \
 					game->map[i - 1][j] != 'E' && game->map[i - 1][j] != 'W')
 				{
-					ft_error(8);
+					ft_error(8, game);
 					exit(EXIT_FAILURE);
 				}
 			}
@@ -82,7 +82,7 @@ void	ft_check_next_line(t_game *game)
 					game->map[i + 1][j] != 'S' && game->map[i + 1][j] != 'N' && \
 					game->map[i + 1][j] != 'E' && game->map[i + 1][j] != 'W')
 				{
-					ft_error(8);
+					ft_error(8, game);
 					exit(EXIT_FAILURE);
 				}
 			}
@@ -109,7 +109,7 @@ void	ft_check_all_file(t_game *game)
 					game->map[i][j + 1] != 'S' && game->map[i][j + 1] != 'N' && \
 					game->map[i][j + 1] != 'E' && game->map[i][j + 1] != 'W')
 				{
-					ft_error(8);
+					ft_error(8, game);
 					exit(EXIT_FAILURE);
 				}
 			}
@@ -131,7 +131,7 @@ void	ft_check_first_line(t_game *game)
 		{
 			if (game->map[i][j] != '1' && game->map[i][j] != ' ')
 			{
-				ft_error(8);
+				ft_error(8, game);
 				exit(EXIT_FAILURE);
 			}
 		}

@@ -17,6 +17,7 @@ int	main(int ac, char **av)
 	int		fd;
 	t_game	game;
 
+	init_struc(&game);
 	fd = ft_valid_fd(av[1], ac);
 	if (fd)
 	{
@@ -24,7 +25,7 @@ int	main(int ac, char **av)
 		ft_get_param(fd, av[1], &game);
 		ft_check_carac_map(&game);
 		ft_check_first_line(&game);
-		system("leaks cub3D");
 	}
+	ft_freeallchar(&game);
 	return (0);
 }

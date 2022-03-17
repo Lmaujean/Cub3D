@@ -18,20 +18,20 @@ int	ft_valid_fd(char *str, int ac)
 
 	if (ac != 2)
 	{
-		ft_error(1);
+		printf("Error\nArguments\n");
 		exit(EXIT_FAILURE);
 	}
 	fd = open(str, O_DIRECTORY);
 	if (fd != -1)
 	{
-		ft_error(2);
+		printf("Error\nTry Open Directory\n");
 		exit(EXIT_FAILURE);
 	}
 	close(fd);
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_error(3);
+		printf("Error\nFile Not Found\n");
 		close(fd);
 		exit(EXIT_FAILURE);
 	}
@@ -42,7 +42,7 @@ void	ft_valid_file(char *str)
 {
 	if (!ft_check_ext(str, ".cub"))
 	{
-		ft_error(4);
+		printf("Error\nFile Not .cub\n");
 		exit(EXIT_FAILURE);
 	}
 }

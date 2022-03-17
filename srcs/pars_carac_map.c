@@ -61,7 +61,7 @@ void	ft_check_nbr_carac(t_game *game)
 	}
 	if (count > 1 || count < 1)
 	{
-		ft_error(7);
+		ft_error(7, game);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -84,7 +84,7 @@ void	ft_check_carac_map(t_game *game)
 				game->map[i][j] != 'S' && game->map[i][j] != 'W' && \
 				game->map[i][j] != 'E')
 			{
-				ft_error(6);
+				ft_error(6, game);
 				exit(EXIT_FAILURE);
 			}
 		}

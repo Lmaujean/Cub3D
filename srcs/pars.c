@@ -76,7 +76,7 @@ int	ft_check(char **file, t_game *game)
 	}
 	if (game->text.f == NULL || game->text.c == NULL)
 	{
-		ft_error(9);
+		ft_error(9, game);
 		exit(EXIT_FAILURE);
 	}
 	ft_check_rgb_floor(game);
@@ -94,8 +94,13 @@ void	ft_get_param(int fd, char *str, t_game *game)
 
 	file = ft_get_file(fd, str);
 	game->map = malloc(sizeof(char *) * (ft_tab_len(file) + 1));
+	*game->map = 0;
 	if (!ft_check(file, game))
-		ft_error(5);
+	{
+		ft_freedouble(file);
+		ft_error(5, game);
+		exit(EXIT_FAILURE);
+	}
 	else
 		ft_save_text(game, file);
 	j = -1;

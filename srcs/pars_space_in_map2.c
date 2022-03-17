@@ -27,7 +27,7 @@ void	ft_check_last_carac(t_game *game)
 		{
 			if (game->map[i][j] != '1' && game->map[i][j] != ' ')
 			{
-				ft_error(8);
+				ft_error(8, game);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -47,7 +47,7 @@ void	ft_check_first_carac(t_game *game)
 		{
 			if (game->map[i][j] != '1' && game->map[i][j] != ' ')
 			{
-				ft_error(8);
+				ft_error(8, game);
 				exit(EXIT_FAILURE);
 			}
 		}

@@ -95,7 +95,7 @@ void	ft_save_text(t_game *game, char **file)
 				game->texture[++j] = ft_strdup(trim);
 		else
 		{
-			ft_error(5);
+			ft_error(5, game);
 			exit(EXIT_FAILURE);
 		}
 		l++;

@@ -112,11 +112,11 @@ void	ft_check_first_carac(t_game *game);
 void	ft_check_rgb_floor(t_game *game);
 void	add_in_text(t_game *game, char *str);
 void	ft_check_int_f(t_game *game);
-void	valid_path_texture(char *str);
+void	valid_path_texture(char *str,  t_game *game);
 
 /******* UTILS *******/
 
-int		ft_error(int c);
+int		ft_error(int c, t_game *game);
 int		ft_strlen(const char *str);
 int		ft_check_ext(const char *file, const char *ext);
 void	print_map(char **tab);
@@ -138,5 +138,7 @@ int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t count, size_t size);
 int		count_line(int fd, char *str);
 void	ft_save_text(t_game *game, char **file);
+void	ft_freeallchar(t_game *game);
+void	init_struc(t_game *game);
 
 #endif

@@ -13,11 +13,11 @@
 #ifndef CUB_H
 # define CUB_H
 
-# include "../mlx_utils/header/mlx_utils.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include "keycode.h"
 # ifdef __linux__
 #  include "../mlx_linux/mlx.h"
 # elif __APPLE__
@@ -74,14 +74,46 @@ typedef struct s_check
 
 /******* STRUCTURE GLOBAL DU JEU *******/
 
+typedef struct s_data_img
+{
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_data_img;
+
+typedef struct s_img
+{
+	void		*img;
+	t_data_img	data;
+	int			width;
+	int			height;
+}			t_img;
+
 typedef struct s_game
 {
 	char		**map;
 	char		*texture[6];
+	void		*init_mlx;
+	void		*init_window;
+	t_img		*img;
 	t_texture	text;
 	t_pos		tex;
 	t_pos		line;
 }				t_game;
+
+
+/******* MLX *******/
+
+int				init_minilibx(t_game *game);
+int				ft_close(int keycode, t_game *game);
+int				ft_press(int keycode, t_game *game);
+int				ft_init_img(t_game *game);
+void			create_img(t_img *img, void *mlx_img);
+int				create_trgb(int t, int r, int g, int b);
+unsigned int	mlx_get_pixel_img(const t_img *img, int x, int y);
+void			mlx_put_img_to_img(t_img *dest, const t_img *src, int x, int y);
+void			mlx_put_pixel_to_img(t_img *dest, int x, int y, unsigned int color);
 
 /******* GNL *******/
 
@@ -140,5 +172,6 @@ int		count_line(int fd, char *str);
 void	ft_save_text(t_game *game, char **file);
 void	ft_freeallchar(t_game *game);
 void	init_struc(t_game *game);
+void	ft_free_game(t_game *game);
 
 #endif

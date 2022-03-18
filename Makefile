@@ -39,6 +39,9 @@ SRCS			= 	main.c\
 					pars_space_in_map2.c\
 					valid_path.c\
 					valid_path2.c\
+					init.c\
+					event.c\
+					draw.c\
 					
 
 SRCS_COM		= 	utils.c\

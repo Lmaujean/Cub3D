@@ -24,6 +24,7 @@ void	init_struc(t_game *game)
 	game->text.we = NULL;
 	game->text.ea = NULL;
 	game->map = NULL;
+	game->img = NULL;
 	while (i < 6)
 	{
 		game->texture[i] = NULL;
@@ -49,8 +50,6 @@ void	ft_freeallchar(t_game *game)
 		free(game->text.f);
 	if (game->text.c)
 		free(game->text.c);
-	if (game->map)
-		ft_freedouble(game->map);
 	while (i < 6)
 	{
 		if (game->texture[i])
@@ -83,4 +82,25 @@ int	ft_error(int c, t_game *game)
 		printf("Error\nPath Not Valid\n");
 	ft_freeallchar(game);
 	return (c);
+}
+
+void	ft_free_game(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (game->img[i].img)
+			mlx_destroy_image(game->init_mlx, game->img[i].img);
+		i++;
+	}
+	mlx_destroy_window(game->init_mlx, game->init_window);
+	if (game->map)
+		ft_freedouble(game->map);
+	if (game->init_mlx)
+		free(game->init_mlx);
+	if (game->img)
+		free(game->img);
+	ft_freeallchar(game);
 }

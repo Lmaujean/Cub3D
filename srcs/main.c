@@ -12,6 +12,13 @@
 
 #include "../includes/cub.h"
 
+void	launch_game(t_game *game)
+{
+	mlx_hook(game->init_window, 17, 0, ft_close, game);
+	mlx_hook(game->init_window, 2, 1L << 0, ft_press, game);
+	mlx_loop(game->init_mlx);
+}
+
 int	main(int ac, char **av)
 {
 	int		fd;
@@ -25,7 +32,14 @@ int	main(int ac, char **av)
 		ft_get_param(fd, av[1], &game);
 		ft_check_carac_map(&game);
 		ft_check_first_line(&game);
+		if (!init_minilibx(&game))
+		{
+			printf("Error:\n");
+			ft_free_game(&game);
+			exit(EXIT_FAILURE);
+		}
+		launch_game(&game);
 	}
-	ft_freeallchar(&game);
+	ft_free_game(&game);
 	return (0);
 }

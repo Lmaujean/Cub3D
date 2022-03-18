@@ -86,20 +86,21 @@ int	ft_error(int c, t_game *game)
 
 void	ft_free_game(t_game *game)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < 5)
 	{
-		if (game->img[i].img)
+		if (game->img && game->img[i].img)
 			mlx_destroy_image(game->init_mlx, game->img[i].img);
 		i++;
 	}
-	mlx_destroy_window(game->init_mlx, game->init_window);
-	if (game->map)
-		ft_freedouble(game->map);
+	if (game->init_window)
+		mlx_destroy_window(game->init_mlx, game->init_window);
 	if (game->init_mlx)
 		free(game->init_mlx);
+	if (game->map)
+		ft_freedouble(game->map);
 	if (game->img)
 		free(game->img);
 	ft_freeallchar(game);

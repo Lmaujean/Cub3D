@@ -1,10 +1,10 @@
 #ifndef KEYCODE_H
 # define KEYCODE_H
 
-# define WALL_NORD "../path/north.xpm"
-# define WALL_SUD "../path/south.xpm"
-# define WALL_EST "../path/east.xpm"
-# define WALL_WEST "../path/west.xpm"
+# define WALL_NORD game->text.no
+# define WALL_SUD game->text.so
+# define WALL_EST game->text.ea
+# define WALL_WEST game->text.we
 # define NBR_IMG 5
 # define WIDTH 1200
 # define HEIGTH 720

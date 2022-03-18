@@ -69,4 +69,12 @@ void	valid_path_texture(char *str, t_game *game)
 		exit(EXIT_FAILURE);
 	}
 	close(fd);
+	fd = open(str, O_DIRECTORY);
+	if (fd != -1)
+	{
+		printf("Error\nPath Not Valid\n");
+		ft_freeallchar(game);
+		exit(EXIT_FAILURE);
+	}
+	close(fd);
 }

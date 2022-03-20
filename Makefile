@@ -42,6 +42,7 @@ SRCS			= 	main.c\
 					init.c\
 					event.c\
 					draw.c\
+					draw_temp.c\
 					
 
 SRCS_COM		= 	utils.c\

@@ -77,6 +77,7 @@ typedef struct s_check
 typedef struct s_data_img
 {
 	char	*addr;
+	void	*data;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -96,6 +97,8 @@ typedef struct s_game
 	char		*texture[6];
 	void		*init_mlx;
 	void		*init_window;
+	int			x;
+	int			y;
 	t_img		*img;
 	t_texture	text;
 	t_pos		tex;
@@ -114,6 +117,7 @@ int				create_trgb(int t, int r, int g, int b);
 unsigned int	mlx_get_pixel_img(const t_img *img, int x, int y);
 void			mlx_put_img_to_img(t_img *dest, const t_img *src, int x, int y);
 void			mlx_put_pixel_to_img(t_img *dest, int x, int y, unsigned int color);
+void			ft_draw(t_game *game);
 
 /******* GNL *******/
 

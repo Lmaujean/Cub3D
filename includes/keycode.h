@@ -6,8 +6,8 @@
 # define WALL_EST game->text.ea
 # define WALL_WEST game->text.we
 # define NBR_IMG 5
-# define WIDTH 1200
-# define HEIGTH 720
+# define WIDTH 1920
+# define HEIGTH 1080
 
 # ifdef __linux__
 #  define KEY_Q 113

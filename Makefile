@@ -70,10 +70,10 @@ OBJS_BNS		= ${SRC_BNS:.c=.o}
 OS				= $(shell uname -s)
 
 ifeq ($(OS),Darwin)
-LIB				= -lmlx -framework OpenGL -framework AppKit ./mlx_utils/mlx_utils.a
+LIB				= -lmlx -framework OpenGL -framework AppKit ./mlx_utils/mlx_utils.a -lm
 endif
 ifeq ($(OS),Linux)
-LIB				= ./mlx_linux/libmlx.a -lXext -lX11 ./mlx_utils/mlx_utils.a
+LIB				= ./mlx_linux/libmlx.a -lXext -lX11 ./mlx_utils/mlx_utils.a -lm
 COMPIL_MLX		= make -C ./mlx_linux
 CLEAN			= clean
 endif

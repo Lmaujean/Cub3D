@@ -21,61 +21,86 @@ void	my_mlx_pixel_put(t_game *env, int x, int y, unsigned int color)
 	*(unsigned int *) dst = color;
 }
 
-
-void	draw_pixel(t_game *game, int x, int y, unsigned int color)
+void	ft_draw_background(t_game *game, int color)
 {
-	int	a;
-	int	b;
+	int	x = 0;
+	int	y = 0;
 
-	a = x;
-	while (a < x + 32)
+	while (x < WIDTH)
 	{
-		b = y;
-		while (b < y + 32)
+		y = 0;
+		while (y < HEIGTH)
 		{
-			my_mlx_pixel_put(game, b, a, color);
-			b++;
+			my_mlx_pixel_put(game, x, y, color);
+			y++;
 		}
-		a++;
+		x++;
 	}
 }
 
-unsigned int	ft_get_color(t_game *game, int i, int j)
+void	ft_square(t_game *game, int x0, int y0, int x1, int y1, int color)
 {
-	if (game->map[i][j] && game->map[i][j] == '1')
-		return (0x00FFFFFF);
-	if (game->map[i][j] && game->map[i][j] == '0')
-		return (0x00000000);
-	if (game->map[i][j] && game->map[i][j] == 'N')
-		return (0x00FFFF00);
-	else
-		return (0x00800000);
+	int	i = x0;
+	int j = y0;
+
+	while (i < x1)
+	{
+		j = y0;
+		while (j < y1)
+		{
+			my_mlx_pixel_put(game, i, j, color);
+			j++;
+		}
+		i++;
+	}
 }
 
-void	ft_draw(t_game *game)
+void	ft_draw_map2d(t_game *game)
 {
-	int				i;
-	int				j;
+	int i = 0;
+	int j = 0;
+	int MapTile = 64;
+	int MapX = 8;
+	int MapY = 8;
+
+	while (i < MapX)
+	{
+		j = 0;
+		while (j < MapY)
+		{
+			if (game->map[i][j] == '1')
+				ft_square(game, i * MapTile + 1, j * MapTile + 1, (i + 1) * MapTile - 1, (j + 1) * MapTile - 1, 0x000000FF);
+			else
+				ft_square(game, i * MapTile + 1, j * MapTile + 1, (i + 1) * MapTile - 1, (j + 1) * MapTile - 1, 0x0000FF00);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	ft_draw_player(t_game *game)
+{
+	ft_square(game, game->player.x, game->player.y, game->player.x + 5, game->player.y + 5, 0xF0E68C);
+}
+
+void	ft_draw_ply_angle(t_game *game)
+{
+	plotLineWidth(game, game->player.x, game->player.y, game->player.x + (int)(round(cos(game->player.angle) * 15)), game->player.y + (int)(round(sin(game->player.angle) * 15)), 1.0, 0x00FF0000);
+}
+
+int	ft_draw(t_game *game)
+{
 	t_img			img;
-	unsigned int	color;
 
 	game->img = &img;
 	game->img->data.data = mlx_new_image(game->init_mlx, WIDTH, HEIGTH);
 	game->img->data.addr = mlx_get_data_addr(game->img->data.data, \
 							&game->img->data.bits_per_pixel, &game->img->data.line_length, &game->img->data.endian);
-	i = 0;
-	game->x = -1;
-	while (++game->x < 16)
-	{
-		j = 0;
-		game->y = -1;
-		while (++game->y < 40)
-		{
-			color = ft_get_color(game, game->x, game->y);
-			draw_pixel(game, i, j, color);
-			j += 32;
-		}
-		i += 32;
-	}
+	ft_draw_background(game, 0xA9A9A9);
+	ft_draw_map2d(game);
+	ft_draw_player(game);
+	ft_draw_ply_angle(game);
 	mlx_put_image_to_window(game->init_mlx, game->init_window, game->img->data.data, 0, 0);
+	mlx_destroy_image(game->init_mlx, game->img->data.data);
+	return (0);
 }

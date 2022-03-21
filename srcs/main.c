@@ -14,9 +14,9 @@
 
 void	launch_game(t_game *game)
 {
-	ft_draw(game);
 	mlx_hook(game->init_window, 17, 0, ft_close, game);
 	mlx_hook(game->init_window, 2, 1L << 0, ft_press, game);
+	mlx_loop_hook(game->init_mlx, ft_draw, game);
 	mlx_loop(game->init_mlx);
 }
 

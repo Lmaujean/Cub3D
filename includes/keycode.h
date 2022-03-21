@@ -8,6 +8,7 @@
 # define NBR_IMG 5
 # define WIDTH 1920
 # define HEIGTH 1080
+# define DR 0.0174533
 
 # ifdef __linux__
 #  define KEY_Q 113
@@ -21,6 +22,8 @@
 #  define KEY_S 1
 #  define KEY_D 2
 #  define KEY_ECHAP 53
+#  define KEY_ARROW_LEFT 123
+#  define KEY_ARROW_RIGHT 124
 # endif
 
 #endif

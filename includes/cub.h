@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 # include "keycode.h"
 # ifdef __linux__
 #  include "../mlx_linux/mlx.h"
@@ -31,8 +32,9 @@
 
 typedef struct s_pos
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	float	angle;
 }				t_pos;
 
 /******* STRUCTURE COULEUR *******/
@@ -99,6 +101,7 @@ typedef struct s_game
 	void		*init_window;
 	int			x;
 	int			y;
+	t_pos		player;
 	t_img		*img;
 	t_texture	text;
 	t_pos		tex;
@@ -117,7 +120,11 @@ int				create_trgb(int t, int r, int g, int b);
 unsigned int	mlx_get_pixel_img(const t_img *img, int x, int y);
 void			mlx_put_img_to_img(t_img *dest, const t_img *src, int x, int y);
 void			mlx_put_pixel_to_img(t_img *dest, int x, int y, unsigned int color);
-void			ft_draw(t_game *game);
+int				ft_draw(t_game *game);
+void			draw_pixel(t_game *game, int x, int y, unsigned int color);
+unsigned int	ft_get_color(t_game *game, int i, int j);
+void			my_mlx_pixel_put(t_game *env, int x, int y, unsigned int color);
+void 			plotLineWidth(t_game *data, int x0, int y0, int x1, int y1, float wd, int color);
 
 /******* GNL *******/
 

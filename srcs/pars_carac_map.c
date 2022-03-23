@@ -38,6 +38,7 @@ int	size_line(t_game *game)
 		if (ft_strlen(game->map[i]) > max)
 			max = ft_strlen(game->map[i]);
 	}
+	game->line.x = max;
 	return (max);
 }
 
@@ -66,12 +67,10 @@ void	ft_check_nbr_carac(t_game *game)
 	}
 }
 
-void	ft_check_carac_map(t_game *game)
+void	ft_check_carac(t_game *game)
 {
-	int			i;
-	int			j;
-	const int	size = size_line(game);
-	int			z;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (game->map[++i])
@@ -87,10 +86,28 @@ void	ft_check_carac_map(t_game *game)
 				ft_error(6, game);
 				exit(EXIT_FAILURE);
 			}
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' || \
+				game->map[i][j] == 'W' || game->map[i][j] == 'E')
+				ft_player(game, i, j);
 		}
 	}
+}
+
+void	ft_check_carac_map(t_game *game)
+{
+	const int	size = size_line(game);
+	int			z;
+
+	ft_check_carac(game);
 	z = -1;
 	while (game->map[++z])
+	{
 		add_space(&game->map[z], size - ft_strlen(game->map[z]));
+		if (empty(game->map[z]))
+		{
+			ft_error(8, game);
+			exit(EXIT_FAILURE);
+		}
+	}
 	ft_check_nbr_carac(game);
 }

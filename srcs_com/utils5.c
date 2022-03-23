@@ -25,6 +25,9 @@ void	init_struc(t_game *game)
 	game->text.ea = NULL;
 	game->map = NULL;
 	game->img = NULL;
+	game->line.y = 0;
+	game->line.x = 0;
+	game->map = 0;
 	while (i < 6)
 	{
 		game->texture[i] = NULL;
@@ -104,4 +107,10 @@ void	ft_free_game(t_game *game)
 	// if (game->img)
 	// 	free(game->img);
 	ft_freeallchar(game);
+}
+
+void	ft_player(t_game *game, int i, int j)
+{
+	game->player.x = i * 64;
+	game->player.y = j * 64;
 }

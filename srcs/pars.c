@@ -87,32 +87,16 @@ int	ft_check(char **file, t_game *game)
 
 void	ft_get_param(int fd, char *str, t_game *game)
 {
-	char	**file;
-	int		i;
-	int		j;
-	char	*trim;
+	char	**param;
 
-	file = ft_get_file(fd, str);
-	game->map = malloc(sizeof(char *) * (ft_tab_len(file) + 1));
-	*game->map = 0;
-	if (!ft_check(file, game))
+	param = ft_get_file(fd, str);
+	game->map = ft_get_map(fd, str, game, 0);
+	if (!ft_check(param, game))
 	{
-		ft_freedouble(file);
+		ft_freedouble(param);
 		ft_error(5, game);
 		exit(EXIT_FAILURE);
 	}
-	else
-		ft_save_text(game, file);
-	j = -1;
-	i = -1;
-	while (file[++i])
-	{
-		trim = ft_strtrim(file[i], " \t");
-		if (ft_check_param_file(trim) == 0)
-			game->map[++j] = ft_strdup(file[i]);
-		free(trim);
-	}
-	game->map[++j] = ft_strdup(file[i]);
-	game->map[j] = NULL;
-	ft_freedouble(file);
+	game->line.y = ft_tab_len(game->map);
+	ft_freedouble(param);
 }

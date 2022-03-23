@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmaujean <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/23 14:17:55 by lmaujean          #+#    #+#             */
+/*   Updated: 2022/03/23 14:17:57 by lmaujean         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
 int	ft_close(int keycode, t_game *game)
@@ -11,23 +23,23 @@ void	set_pos(t_game *game, int keycode)
 {
 	if (keycode == KEY_W)
 	{
-		game->player.x += round(cos(game->player.angle) * 1);
-		game->player.y += round(sin(game->player.angle) * 1);
+		game->player.x += round(cos(game->player.angle) * 3);
+		game->player.y += round(sin(game->player.angle) * 3);
 	}
 	if (keycode == KEY_D)
 	{
-		game->player.x += round(cos(game->player.angle + 90 * DR) * 1);
-		game->player.y += round(sin(game->player.angle + 90 * DR) * 1);
+		game->player.x += round(cos(game->player.angle + 90 * DR) * 3);
+		game->player.y += round(sin(game->player.angle + 90 * DR) * 3);
 	}
 	if (keycode == KEY_S)
 	{
-		game->player.x -= round(cos(game->player.angle) * 1);
-		game->player.y -= round(sin(game->player.angle) * 1);
+		game->player.x -= round(cos(game->player.angle) * 3);
+		game->player.y -= round(sin(game->player.angle) * 3);
 	}
 	if (keycode == KEY_A)
 	{
-		game->player.x += round(cos(game->player.angle - 90 * DR) * 1);
-		game->player.y += round(sin(game->player.angle - 90 * DR) * 1);
+		game->player.x += round(cos(game->player.angle - 90 * DR) * 3);
+		game->player.y += round(sin(game->player.angle - 90 * DR) * 3);
 	}
 }
 

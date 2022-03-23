@@ -85,7 +85,7 @@ void	ft_save_text(t_game *game, char **file)
 
 	i = -1;
 	j = -1;
-		l = 0;
+	l = 0;
 	while (file[++i])
 	{
 		if (l > 5)

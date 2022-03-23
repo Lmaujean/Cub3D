@@ -60,13 +60,13 @@ void	ft_draw_map2d(t_game *game)
 	int i = 0;
 	int j = 0;
 	int MapTile = 64;
-	int MapX = 8;
-	int MapY = 8;
+	int MapX = game->line.x;
+	int MapY = game->line.y;
 
-	while (i < MapX)
+	while (i < MapY)
 	{
 		j = 0;
-		while (j < MapY)
+		while (j < MapX)
 		{
 			if (game->map[i][j] == '1')
 				ft_square(game, i * MapTile + 1, j * MapTile + 1, (i + 1) * MapTile - 1, (j + 1) * MapTile - 1, 0x000000FF);

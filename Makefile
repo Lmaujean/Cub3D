@@ -50,6 +50,7 @@ SRCS_COM		= 	utils.c\
 					utils3.c\
 					utils4.c\
 					utils5.c\
+					utils6.c\
 					GNL_utils.c\
 					GNL.c\
 					
